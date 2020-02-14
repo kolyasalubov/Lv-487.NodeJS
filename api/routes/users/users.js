@@ -21,14 +21,14 @@ const router = express.Router();
 //     async (req, res) => {
 //         const errors = validationResult(req);
 //         if (!errors.isEmpty()) {
-//             return res.status(400).json({ errors: errors.array() });
+//             return res.status(400).send({ errors: errors.array() });
 //         }
 //
 //         const { name, email, password } = req.body;
 //         try {
 //             let user = await UserModel.findOne({ email });
 //             if (user) {
-//                 return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+//                 return res.status(400).send({ errors: [{ msg: 'User already exists' }] });
 //             }
 //
 //             user = new UserModel({
@@ -51,7 +51,7 @@ const router = express.Router();
 //
 //             jwt.sign(payload, config.get('jwtSecret'), { expiresIn: 360000 }, (err, token) => {
 //                 if (err) throw err;
-//                 res.json({ token });
+//                 res.send({ token });
 //             });
 //         } catch (error) {
 //             console.error(error.message);
@@ -63,7 +63,7 @@ const router = express.Router();
 router.get('/', async (req, res) => {
     try {
         const user = await UserModel.find();
-        return res.json(user);
+        return res.send(user);
     } catch (err) {
         return console.log(err);
     }
@@ -76,7 +76,7 @@ router.get('/:id', async (req, res) => {
         if (!user) {
             return res.status(404).send('Usere dont exist');
         }
-        return res.json(user);
+        return res.send(user);
     } catch (err) {
         return console.log(err);
     }
@@ -88,7 +88,7 @@ router.post('/', async (req, res) => {
     try {
         let user = await UserModel.findOne({ email });
         if (user) {
-            return res.status(400).json({ errors: [{ msg: 'User already exists' }] });
+            return res.status(400).send({ errors: [{ msg: 'User already exists' }] });
         }
 
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -101,7 +101,7 @@ router.post('/', async (req, res) => {
         });
         await user.save();
 
-        return res.json({ msg: 'User saved', user });
+        return res.send({ msg: 'User saved', user });
     } catch (err) {
         return console.log(err);
     }
@@ -138,7 +138,7 @@ router.patch('/:id', async (req, res) => {
             userToUpdate.password = password;
         }
         userToUpdate.save();
-        return res.json(userToUpdate);
+        return res.send(userToUpdate);
     } catch (err) {
         return console.log(err);
     }

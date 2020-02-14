@@ -9,37 +9,37 @@ router.get('/', async (req, res) => {
         try {
             const products = await ProductModel.find(query);
             if (products.length) {
-                res.json(products);
+                res.send(products);
             } else {
-                res.status(500).json({ message: `Bad query:`, query });
+                res.status(500).send({ message: `Bad query:`, query });
             }
         } catch (err) {
-            res.status(500).json({ message: err.message });
+            res.status(500).send({ message: err.message });
         }
     } else {
         try {
             const products = await ProductModel.find();
-            res.json(products);
+            res.send(products);
         } catch (err) {
-            res.status(500).json({ message: err.message });
+            res.status(500).send({ message: err.message });
         }
     }
 });
 
 router.get('/:id', getProduct, (req, res) => {
-    res.json(res.product);
+    res.send(res.product);
 });
 
 router.post('/', async (req, res) => {
     const product = new ProductModel({
-        name: req.body.name,
+        model: req.body.model,
         brand: req.body.brand,
     });
     try {
         const newProduct = await product.save();
-        res.status(201).json(newProduct);
+        res.status(201).send(newProduct);
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        res.status(400).send({ message: err.message });
     }
 });
 
@@ -52,18 +52,18 @@ router.patch('/:id', getProduct, async (req, res) => {
     }
     try {
         const updatedProduct = await res.product.save();
-        res.json(updatedProduct);
+        res.send(updatedProduct);
     } catch (err) {
-        res.status(400).json({ message: err.message });
+        res.status(400).send({ message: err.message });
     }
 });
 
 router.delete('/:id', getProduct, async (req, res) => {
     try {
         await res.product.remove();
-        res.json({ message: 'Deleted Product' });
+        res.send({ message: 'Deleted Product' });
     } catch (err) {
-        res.status(500).json({ message: err.message });
+        res.status(500).send({ message: err.message });
     }
 });
 
@@ -72,10 +72,10 @@ async function getProduct(req, res, next) {
     try {
         product = await ProductModel.findById(req.params.id);
         if (product == null) {
-            return res.status(404).json({ message: 'Cannot find subscriber' });
+            return res.status(404).send({ message: 'Cannot find subscriber' });
         }
     } catch (err) {
-        return res.status(500).json({ message: err.message });
+        return res.status(500).send({ message: err.message });
     }
 
     res.product = product;
@@ -89,13 +89,13 @@ async function getProduct(req, res, next) {
 //     try {
 //         let product = await ProductModel.findOne({ name });
 //         if (product) {
-//             return res.status(400).json({ errors: [{ msg: 'Cloth item already exists' }] });
+//             return res.status(400).send({ errors: [{ msg: 'Cloth item already exists' }] });
 //         }
 
 //         product = new ProductModel(req.body);
 
 //         await product.save();
-//         res.json(product);
+//         res.send(product);
 //     } catch (error) {
 //         console.error(error);
 //         res.status(500).send('Server error');

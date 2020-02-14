@@ -3,14 +3,13 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const ProductSchema = new Schema({
-    name: {
+    model: {
         type: String,
         required: true,
-        unique: true,
     },
     brand: {
         type: String, // type: Schema.Types.ObjectId,
-        required: true, // ref: 'brands'
+        required: true,
     },
     //     gender: {
     //         type: String,
