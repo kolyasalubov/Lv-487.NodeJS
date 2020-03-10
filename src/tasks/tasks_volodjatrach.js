@@ -1,7 +1,7 @@
 import Task, { tasks } from '../constructor.js';
 
 // 88a
-const task88a = module.exports.task88a = (n) =>  {
+const task88a = (n) =>  {
         const strNumber = Math.pow(n, 2).toString();
         if (strNumber.includes(3)) {
                 return `YES! ${strNumber} includes 3`;
@@ -11,7 +11,7 @@ const task88a = module.exports.task88a = (n) =>  {
 
 
 // 88b
-const task88b = module.exports.task88b = (n) => {
+const task88b = (n) => {
         const strNumber = Math.pow(n, 2).toString();
         const reverse = strNumber
                 .split('')
@@ -22,7 +22,7 @@ const task88b = module.exports.task88b = (n) => {
 
 
 // 322
-const findDividers = module.exports.findDividers = () =>{
+const findDividers = () =>{
         let maxLenght = 0;
         let number = 0;
         for (let n = 1; n <= 10000; n++) {
@@ -62,3 +62,5 @@ tasks.set(
         '322',
         new Task('Find the natural number from 1 to 10 000 with the maximum amount of dividers', findDividers)
 );
+
+module.exports = { task88a, task88b, findDividers};
