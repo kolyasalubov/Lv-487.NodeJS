@@ -63,3 +63,5 @@ tasks.set(
                 mersennePrime
         )
 );
+
+module.exports = { sumOfLastNumbers, multipleNumbers, mersennePrime }
