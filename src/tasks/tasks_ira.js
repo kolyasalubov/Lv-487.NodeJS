@@ -1,20 +1,20 @@
 import Task, { tasks } from '../constructor.js';
 
 // 88v
-function swapMarginalDigits(num) {
+const swapMarginalDigits = (num) => {
         const numStr = num.toString();
         const result = numStr.slice(-1) + numStr.slice(1, -1) + numStr.slice(0, 1);
         return parseInt(result);
 }
 
 // 88h
-function wrapByOne(num) {
+const wrapByOne= (num) => {
         const result = '1'.concat(num, '1');
         return parseInt(result);
 }
 
 // 332
-function findLagrangeNumbers(num) {
+const findLagrangeNumbers = (num) => {
         const sqrtOfnum = Math.floor(Math.sqrt(num));
         for (let x = 1; x <= sqrtOfnum; x++) {
                 for (let y = 1; y <= sqrtOfnum; y++) {
@@ -43,3 +43,5 @@ tasks.set(
                 findLagrangeNumbers
         )
 );
+
+module.exports = { swapMarginalDigits, wrapByOne, findLagrangeNumbers};
