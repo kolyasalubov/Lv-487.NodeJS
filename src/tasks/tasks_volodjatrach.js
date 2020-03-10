@@ -1,7 +1,7 @@
 import Task, { tasks } from '../constructor.js';
 
 // 88a
-exports.task88a = (n) =>  {
+const task88a = module.exports.task88a = (n) =>  {
         const strNumber = Math.pow(n, 2).toString();
         if (strNumber.includes(3)) {
                 return `YES! ${strNumber} includes 3`;
@@ -9,8 +9,9 @@ exports.task88a = (n) =>  {
         return `No ${strNumber} does not includes 3`;
 }
 
+
 // 88b
-exports.task88b = (n) => {
+const task88b = module.exports.task88b = (n) => {
         const strNumber = Math.pow(n, 2).toString();
         const reverse = strNumber
                 .split('')
@@ -19,8 +20,9 @@ exports.task88b = (n) => {
         return reverse;
 }
 
+
 // 322
-exports.findDividers = () =>{
+const findDividers = module.exports.findDividers = () =>{
         let maxLenght = 0;
         let number = 0;
         for (let n = 1; n <= 10000; n++) {
