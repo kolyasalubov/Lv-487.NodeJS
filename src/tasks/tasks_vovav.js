@@ -1,6 +1,6 @@
 import Task, { tasks } from '../constructor.js';
 // 182
-function findData(args) {
+ function findData(args) {
         let i;
         let summ = 0;
         const numbers = [];
@@ -47,39 +47,38 @@ function findPrime(n) {
 
 function findRange(x, y) {
         const findDeviders = n => {
-                if (typeof n !== 'number' || n === '') {
-                        throw new Error('argument must be an integer');
-                }
-                const deviders = [];
-                for (let i = 0; i < n; i++) {
-                        if (n % i === 0) {
-                                deviders.push(i);
-                        }
-                }
-                return deviders;
+          if (typeof n !== "number" || n === "") {
+            console.log("argument must be an integer");
+          }
+          let dividers = [];
+          for (let i = 0; i < n; i++) {
+            if (n % i === 0) {
+              dividers.push(i);
+            }
+          }
+          return dividers;
         };
-        const obj = {};
-        const sumObj = {};
-        const resultObj = {};
+      
+        let obj = {};
+        let sumObj = {};
+        let resultObj = {};
+      
         for (let i = x; i <= y; i++) {
-                obj[i] = findDeviders(i);
+          obj[i] = findDeviders(i);
         }
-        for (const key in obj) {
-                let res = 0;
-                obj[key].forEach(item => {
-                        res += item;
-                });
-                sumObj[key] = res;
+        for (let key in obj) {
+          sumObj[key] = obj[key].reduce((sum, elem) => sum + elem);
         }
-        for (let i = 200; i <= 300; i++) {
-                for (const key in sumObj) {
-                        if (i === sumObj[key]) {
-                                resultObj[key] = sumObj[key];
-                        }
-                }
+        let tempObj = { ...sumObj };
+        for (let key in sumObj) {
+          for (let item in tempObj)
+            if (key == tempObj[item] && sumObj[key] == item) {
+              resultObj[key] = +item;
+            }
         }
+      
         return resultObj;
-}
+      }
 tasks.set(
         '182',
         new Task(
@@ -103,3 +102,4 @@ tasks.set(
                 findRange
         )
 );
+module.exports = {findData, findPrime, findRange}
