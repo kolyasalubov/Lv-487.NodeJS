@@ -1,7 +1,7 @@
 import Task, { tasks } from '../constructor.js';
 
 // 88a
-function task88a(n) {
+exports.task88a = (n) =>  {
         const strNumber = Math.pow(n, 2).toString();
         if (strNumber.includes(3)) {
                 return `YES! ${strNumber} includes 3`;
@@ -10,7 +10,7 @@ function task88a(n) {
 }
 
 // 88b
-function task88b(n) {
+exports.task88b = (n) => {
         const strNumber = Math.pow(n, 2).toString();
         const reverse = strNumber
                 .split('')
@@ -20,16 +20,7 @@ function task88b(n) {
 }
 
 // 322
-function findLenght(n) {
-        const dil = [];
-        for (let i = 1; i <= n; i++) {
-                if (n % i === 0) {
-                        dil.push(i);
-                }
-        }
-        return dil.length;
-}
-function findDividers() {
+exports.findDividers = () =>{
         let maxLenght = 0;
         let number = 0;
         for (let n = 1; n <= 10000; n++) {
@@ -40,6 +31,16 @@ function findDividers() {
                 }
         }
         return `The number is ${number} and it has ${maxLenght} dividers`;
+}
+
+function findLenght(n) {
+        const dil = [];
+        for (let i = 1; i <= n; i++) {
+                if (n % i === 0) {
+                        dil.push(i);
+                }
+        }
+        return dil.length;
 }
 
 tasks.set(
