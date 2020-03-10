@@ -43,3 +43,5 @@ tasks.set('86a', new Task('How many digits in number n. Enter n:', numberLength)
 tasks.set('86b', new Task('Sum of digits in number n. Enter n:', digitsSum));
 
 tasks.set('330', new Task('Find all perfect numbers less than n. Enter n:', findPerfectNumbers));
+
+module.exports = { numberLength, digitsSum, findPerfectNumbers };
